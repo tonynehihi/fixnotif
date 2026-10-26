@@ -1,54 +1,57 @@
 # FixNotif
 
-App nhỏ nằm trên thanh menu macOS, để sửa nhanh mỗi khi thông báo dở chứng
-mà không cần mở Terminal.
+A small app that lives on the macOS menu bar, for a quick fix whenever
+notifications misbehave, without opening Terminal.
 
-## Chức năng
+## Features
 
-Bấm vào icon chuông trên thanh menu rồi chọn **Sửa thông báo**: app chạy
-`killall NotificationCenter` để khởi động lại dịch vụ thông báo của macOS.
-Xong việc icon đổi thành dấu tick trong 3 giây để báo đã sửa xong. Chọn
-**Thoát** trong menu để tắt app.
+Click the bell icon on the menu bar and choose **Fix notification**: the app
+runs `killall NotificationCenter` to restart macOS's notification service.
+When done, the icon changes to a tick for 3 seconds to report that the fix
+is complete. Choose **Quit** in the menu to close the app.
 
-Dùng khi: thông báo không hiện, banner không nhảy, hoặc NotificationCenter
-đơ sau một thời gian chạy máy.
+Use it when: notifications do not appear, banners do not pop up, or
+NotificationCenter freezes after the machine has been running for a while.
 
-## Cài đặt
+## Install
 
-1. Tải `FixNotif.zip` từ mục Releases.
-2. Giải nén rồi chuyển `FixNotif.app` vào `/Applications`.
-3. Mở app lên dùng.
+1. Download `FixNotif.zip` from Releases.
+2. Unzip it, then move `FixNotif.app` to `/Applications`.
+3. Open the app and use it.
 
-## Không mở được thì làm sao
+## If it will not open
 
-App chưa ký Developer ID và chưa notarize, nên file tải về qua trình duyệt
-bị macOS gắn cờ quarantine. Lúc mở, macOS sẽ báo **"FixNotif is damaged
-and can't be opened"** — file không hề hỏng, đây chỉ là Gatekeeper chặn app
-không ký. Trường hợp báo "damaged" này **không có nút Open Anyway** trong
-Settings (nút đó chỉ hiện với dạng chặn "unidentified developer"), nên đừng
-mất công tìm.
+The app is not signed with a Developer ID and is not notarized, so a file
+downloaded through a browser gets a quarantine flag from macOS. On opening,
+macOS reports **"FixNotif is damaged and can't be opened"** — the file is
+not damaged at all, this is just Gatekeeper blocking an unsigned app. In
+this "damaged" case there is **no Open Anyway button** in Settings (that
+button only appears for "unidentified developer" blocks), so do not waste
+time looking for it.
 
-Cách sửa: thoát app nếu nó đang chạy, rồi chạy 1 lệnh này trong Terminal:
+To fix it: quit the app if it is running, then run this one command in
+Terminal:
 
 ```bash
 xattr -dr com.apple.quarantine /Applications/FixNotif.app && open /Applications/FixNotif.app
 ```
 
-Lệnh trên gỡ cờ quarantine rồi mở app lại là chạy bình thường.
+The command above removes the quarantine flag and reopens the app, and it
+then runs normally.
 
-## Lưu ý
+## Notes
 
-- App vẫn hiện icon trên Dock dù đã bật chế độ chỉ hiện menu bar — chỉ xấu
-  thôi, chức năng trên thanh menu vẫn đủ.
-- App chưa tự chạy khi mở máy; muốn thì tự thêm vào Login Items trong
-  Settings sau.
+- The app still shows a Dock icon even though menu-bar-only mode is
+  enabled — that is cosmetic only, the menu-bar functionality is complete.
+- The app does not start automatically at login; if you want that, add it
+  to Login Items in Settings yourself.
 
-## Build từ source
+## Build from source
 
-Chỉ cần Xcode Command Line Tools:
+You only need Xcode Command Line Tools:
 
 ```bash
 ./build.sh
 ```
 
-Lệnh này tạo ra `FixNotif.app` trong cùng thư mục.
+This command creates `FixNotif.app` in the same directory.
