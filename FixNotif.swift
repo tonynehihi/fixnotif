@@ -12,17 +12,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         item.button?.image = symbol("bell")
-        item.button?.toolTip = "Sửa thông báo"
+        item.button?.toolTip = "Fix notifications"
 
         let menu = NSMenu()
 
-        let fix = NSMenuItem(title: "Sửa thông báo", action: #selector(fixNotifications), keyEquivalent: "")
+        let fix = NSMenuItem(title: "Fix notifications", action: #selector(fixNotifications), keyEquivalent: "")
         fix.target = self
         menu.addItem(fix)
 
         menu.addItem(.separator())
 
-        let quit = NSMenuItem(title: "Thoát", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        let quit = NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         quit.target = NSApplication.shared
         menu.addItem(quit)
 
@@ -37,7 +37,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         try? task.run()
         task.waitUntilExit()
 
-        // Feedback: tick 3 giây rồi về lại chuông.
+        // Feedback: checkmark for 3 seconds, then back to the bell.
         statusItem?.button?.image = symbol("checkmark")
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
             self?.statusItem?.button?.image = self?.symbol("bell")
