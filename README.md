@@ -23,8 +23,8 @@ NotificationCenter freezes after the machine has been running for a while.
 
 - **Vietnamese**: the `FixNotif.zip` in Releases (v1.1.0) — the menu shows
   "Sửa thông báo" and "Thoát".
-- **English**: the current source on this branch — build it with
-  `./build.sh`; the menu shows "Fix notifications" and "Quit".
+- **English**: the `FixNotif-1.1.1.zip` in Releases (v1.1.1) — the menu
+  shows "Fix notifications" and "Quit".
 
 ## If it will not open
 
