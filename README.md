@@ -19,6 +19,13 @@ NotificationCenter freezes after the machine has been running for a while.
 2. Unzip it, then move `FixNotif.app` to `/Applications`.
 3. Open the app and use it.
 
+## Language versions
+
+- **Vietnamese**: the `FixNotif.zip` in Releases (v1.1.0) — the menu shows
+  "Sửa thông báo" and "Thoát".
+- **English**: the current source on this branch — build it with
+  `./build.sh`; the menu shows "Fix notifications" and "Quit".
+
 ## If it will not open
 
 The app is not signed with a Developer ID and is not notarized, so a file
